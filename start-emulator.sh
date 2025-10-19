@@ -4,16 +4,14 @@ set -e
 export ANDROID_SDK_ROOT=/opt/android-sdk
 export PATH=$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$PATH
 
-# VNC 실행
+echo "[start] 가상 디스플레이 & VNC 실행 중..."
 /root/start-vnc.sh &
 
-# Android Emulator 실행
+echo "[start] Android 에뮬레이터 부팅 중..."
 emulator -avd android12-play -noaudio -no-boot-anim -gpu swiftshader_indirect -verbose &
-sleep 40  # 부팅 대기
 
-# APK 설치 (AAB 없으면 skip)
-[root]/bundletool.sh
-[root]/install-app.sh
+sleep 40
+echo "[ok] Android 에뮬레이터 부팅 완료"
 
-# 컨테이너 유지
+# 컨테이너 유지 (Render 등에서 자동 종료 방지)
 tail -f /dev/null
