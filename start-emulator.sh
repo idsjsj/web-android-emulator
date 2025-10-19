@@ -13,5 +13,5 @@ emulator -avd android12-play -noaudio -no-boot-anim -gpu swiftshader_indirect -v
 sleep 40
 echo "[ok] Android 에뮬레이터 부팅 완료"
 
-# 컨테이너 유지 (Render 등에서 자동 종료 방지)
+# Render 등에서 자동 종료 방지
 tail -f /dev/null
