@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+
 APK=/root/app.apk
 export PATH=$PATH:/opt/android-sdk/platform-tools
 
