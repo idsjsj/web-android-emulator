@@ -5,10 +5,12 @@ BUNDLETOOL=/root/bundletool.jar
 AAB=/root/app-release.aab
 OUTAPK=/root/app.apk
 
+# bundletool 다운로드
 if [ ! -f $BUNDLETOOL ]; then
   wget https://github.com/google/bundletool/releases/download/1.17.2/bundletool-all-1.17.2.jar -O $BUNDLETOOL
 fi
 
+# AAB 파일 존재 시만 변환
 if [ -f $AAB ]; then
   TMPDIR=$(mktemp -d)
   java -jar $BUNDLETOOL build-apks --bundle=$AAB --output=$TMPDIR/app.apks --mode=universal
@@ -17,5 +19,5 @@ if [ -f $AAB ]; then
   rm -rf $TMPDIR
   echo "[ok] universal.apk 생성 완료: $OUTAPK"
 else
-  echo "[warn] app-release.aab 없음, 변환 skipped"
+  echo "[info] app-release.aab 없음 → APK 변환 단계 건너뜀"
 fi
