@@ -1,4 +1,3 @@
-```yaml
 name: Build Android Emulator
 on:
   push:
