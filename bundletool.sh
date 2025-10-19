@@ -5,12 +5,10 @@ BUNDLETOOL=/root/bundletool.jar
 AAB=/root/app-release.aab
 OUTAPK=/root/app.apk
 
-# bundletool 다운로드
 if [ ! -f $BUNDLETOOL ]; then
   wget https://github.com/google/bundletool/releases/download/1.17.2/bundletool-all-1.17.2.jar -O $BUNDLETOOL
 fi
 
-# AAB 파일 존재 시만 변환
 if [ -f $AAB ]; then
   TMPDIR=$(mktemp -d)
   java -jar $BUNDLETOOL build-apks --bundle=$AAB --output=$TMPDIR/app.apks --mode=universal
