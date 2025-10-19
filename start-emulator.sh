@@ -1,9 +1,5 @@
 #!/bin/bash
 set -e
-
-# Docker 설치 확인 (Ubuntu 서버에서 PATH 문제 방지)
-/root/install-docker.sh
-
 export ANDROID_SDK_ROOT=/opt/android-sdk
 export PATH=$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$PATH
 
