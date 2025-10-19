@@ -1,15 +1,11 @@
+```yaml
 name: Build Android Emulator
-
 on:
   push:
     branches: [ main ]
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Build Docker image
-        run: docker build -t web-android-emulator .
+      - uses: actions/checkout@v3
+      - run: docker build -t web-android-emulator .
