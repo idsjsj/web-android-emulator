@@ -1,8 +1,12 @@
 FROM ubuntu:22.04
 
-# 필수 패키지
+# 환경 변수로 tzdata 대화형 입력 건너뜀 + 시간대 지정
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Seoul
+
+# 필수 패키지 설치
 RUN apt-get update && apt-get install -y \
-    wget unzip openjdk-17-jdk adb xvfb x11vnc fluxbox novnc websockify git curl \
+    wget unzip openjdk-17-jdk adb xvfb x11vnc fluxbox novnc websockify git curl tzdata \
     && rm -rf /var/lib/apt/lists/*
 
 # Android SDK 설치
