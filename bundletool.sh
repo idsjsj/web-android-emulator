@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-
 BUNDLETOOL=/root/bundletool.jar
 AAB=/root/app-release.aab
 OUTAPK=/root/app.apk
