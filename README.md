@@ -5,4 +5,6 @@
 1. Docker 빌드:
 ```bash
 docker build -t web-android-emulator .
+docker run -p 6080:6080 web-android-emulator
+http://localhost:6080
 
