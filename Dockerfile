@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-# 환경 변수로 tzdata 대화형 입력 건너뜀 + 시간대 지정
+# 환경 변수: tzdata 대화형 입력 건너뜀, 시간대 지정
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Seoul
 
@@ -13,19 +13,19 @@ RUN apt-get update && apt-get install -y \
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
 RUN mkdir -p $ANDROID_SDK_ROOT && cd /opt && \
     wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip && \
-    unzip commandlinetools-linux-*.zip -d $ANDROID_SDK_ROOT/cmdline-tools && \
-    mv $ANDROID_SDK_ROOT/cmdline-tools $ANDROID_SDK_ROOT/latest && \
-    yes | $ANDROID_SDK_ROOT/latest/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT --licenses
+    unzip commandlinetools-linux-11076708_latest.zip -d $ANDROID_SDK_ROOT/cmdline-tools && \
+    mv $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest && \
+    yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT --licenses
 
 # Android 12 + Google Play System Image 설치
-RUN yes | $ANDROID_SDK_ROOT/latest/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT \
+RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT \
     "platform-tools" \
     "emulator" \
     "system-images;android-31;google_apis_playstore;arm64-v8a" \
     "platforms;android-31"
 
 # AVD 생성
-RUN echo "no" | $ANDROID_SDK_ROOT/latest/bin/avdmanager create avd \
+RUN echo "no" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/avdmanager create avd \
     --name android12-play \
     --package "system-images;android-31;google_apis_playstore;arm64-v8a" \
     --device "pixel_5"
@@ -37,7 +37,6 @@ COPY start-emulator.sh /root/start-emulator.sh
 COPY start-vnc.sh /root/start-vnc.sh
 COPY bundletool.sh /root/bundletool.sh
 COPY install-app.sh /root/install-app.sh
-
 RUN chmod +x /root/*.sh
 
 CMD ["/root/start-emulator.sh"]
