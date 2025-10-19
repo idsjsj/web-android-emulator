@@ -16,7 +16,7 @@ RUN mkdir -p $ANDROID_SDK_ROOT && cd /opt && \
     mv $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest && \
     yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT --licenses
 
-# Android 12 + Google Play 설치
+# Android 12 + Google Play 이미지 설치
 RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT \
     "platform-tools" \
     "emulator" \
