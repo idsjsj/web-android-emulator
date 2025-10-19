@@ -12,7 +12,7 @@ emulator -avd android12-play -noaudio -no-boot-anim -gpu swiftshader_indirect -v
 
 sleep 40  # 부팅 대기
 
-# APK 설치
+# APK 설치 단계
 /root/bundletool.sh
 /root/install-app.sh
 
