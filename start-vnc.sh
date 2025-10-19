@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+
 Xvfb :0 -screen 0 1280x720x16 &
 export DISPLAY=:0
 fluxbox &
