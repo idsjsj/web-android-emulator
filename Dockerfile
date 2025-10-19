@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-# 환경 변수: tzdata 대화형 입력 건너뜀, 시간대 지정
+# 환경 변수: tzdata 대화형 입력 건너뜀 + 시간대 설정
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Seoul
 
@@ -32,7 +32,7 @@ RUN echo "no" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/avdmanager create avd
 
 EXPOSE 6080
 
-# 스크립트 복사
+# 실행 스크립트 복사
 COPY start-emulator.sh /root/start-emulator.sh
 COPY start-vnc.sh /root/start-vnc.sh
 COPY bundletool.sh /root/bundletool.sh
